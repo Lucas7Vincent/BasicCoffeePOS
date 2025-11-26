@@ -1,0 +1,232 @@
+# ========================================
+# CafeBeer POS - Git Ignore Configuration
+# ========================================
+
+# ============================================
+# Node Modules (Không push - quá lớn)
+# ============================================
+node_modules/
+BasicClient/node_modules/
+CafeBeerPOS/node_modules/
+
+# ============================================
+# Build Outputs (Không push - generated)
+# ============================================
+# Next.js
+BasicClient/.next/
+BasicClient/out/
+BasicClient/build/
+BasicClient/dist/
+
+# General
+*.log
+*.tgz
+*.swp
+.DS_Store
+
+# ============================================
+# Environment Variables (CRITICAL - Chứa secrets)
+# ============================================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+BasicClient/.env*
+CafeBeerPOS/.env*
+
+# Backup của env files
+*.env.backup
+*.env.old
+
+# ============================================
+# Database Files (Không push - sensitive data)
+# ============================================
+*.mdf
+*.ldf
+*.bak
+/database/backups/
+*.sql.backup
+
+# ============================================
+# Documentation Files (Chỉ giữ README.md)
+# ============================================
+# Ignore tất cả MD files NGOẠI TRỪ README.md
+*.md
+!README.md
+
+# Explicitly ignore các doc files
+BasicClient/ARCHITECTURE_ANALYSIS.md
+BasicClient/TECH_LEAD_REVIEW.md
+BasicClient/IMPLEMENTATION_GUIDE.md
+BasicClient/PRINT_SYSTEM_GUIDE.md
+BasicClient/AUTH_IMAGE_FIXES.md
+BasicClient/HYDRATION_FIX.md
+BasicClient/LOGO_CUSTOMIZATION.md
+
+CafeBeerPOS/ARCHITECTURE_ANALYSIS.md
+CafeBeerPOS/TECH_LEAD_REVIEW.md
+
+# ============================================
+# IDE & Editor Files (Không push)
+# ============================================
+# VSCode
+.vscode/
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+*.code-workspace
+
+# WebStorm / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================
+# OS Files (Không push)
+# ============================================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ============================================
+# Logs (Không push - có thể chứa sensitive info)
+# ============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# Log files
+/logs
+*.log
+
+# ============================================
+# Testing & Coverage (Không push - generated)
+# ============================================
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+playwright-report/
+
+# ============================================
+# Temporary Files (Không push)
+# ============================================
+*.tmp
+*.temp
+.cache/
+.temp/
+tmp/
+
+# ============================================
+# Lock Files (Tuỳ chọn)
+# ============================================
+# Uncomment nếu muốn ignore lock files
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# ============================================
+# Production Builds (Không push - generated)
+# ============================================
+/build
+/dist
+/out
+
+# ============================================
+# Miscellaneous
+# ============================================
+# Debug
+npm-debug.log*
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Optional: Next.js cache
+.next/
+out/
+
+# Optional: Vercel
+.vercel
+
+# Optional: Turbo
+.turbo
+
+# ============================================
+# Local Development Files
+# ============================================
+# Local scripts
+scripts/local-*.sh
+scripts/local-*.js
+
+# Test data
+test-data/
+mock-data/
+
+# ============================================
+# Sensitive Data (CRITICAL)
+# ============================================
+# Config files với credentials
+config/local.json
+config/development.json
+config/production.json
+
+# SSL certificates
+*.pem
+*.key
+*.cert
+*.crt
+
+# Database dumps
+*.sql.gz
+database-dump-*.sql
+
+# Backup files
+*.backup
+*.bak
+
+# ============================================
+# Files TO KEEP (Exceptions)
+# ============================================
+# Keep these files:
+!README.md
+!.gitignore
+!.gitkeep
+!.env.example
+!.env.template
+
