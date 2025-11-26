@@ -199,9 +199,11 @@ test-data/
 mock-data/
 
 # ============================================
-# Sensitive Data (CRITICAL)
+# Sensitive Data (CRITICAL - Database Credentials)
 # ============================================
-# Config files với credentials
+# Database config files với credentials
+CafeBeerPOS/config/db.js
+CafeBeerPOS/config/database.js
 config/local.json
 config/development.json
 config/production.json
@@ -227,6 +229,10 @@ database-dump-*.sql
 !README.md
 !.gitignore
 !.gitkeep
+!.gitattributes
 !.env.example
 !.env.template
+!db.js.example
+!*.example
+!*.template
 

@@ -1,38 +1,37 @@
 const sql = require('mssql');
 
+// ⚠️ IMPORTANT: Copy file này thành db.js và thay đổi credentials
+// cp db.js.example db.js
+
 const config = {
-  user: 'sa',
-  password: 'sa',
-  server: 'localhost', 
-  database: 'CafeBeer',
+  user: process.env.DB_USER || 'your_database_user',
+  password: process.env.DB_PASSWORD || 'your_database_password',
+  server: process.env.DB_SERVER || 'localhost', 
+  database: process.env.DB_DATABASE || 'CafeBeer',
   options: {
-    encrypt: false, // nếu dùng Azure thì để true
+    encrypt: process.env.DB_ENCRYPT === 'true' || false,
     enableArithAbort: true,
-    // ✅ FIX: Add timezone and datetime options
-    useUTC: false, // Use local server time instead of UTC
-    dateFormat: 'mdy', // Month/Day/Year format
-    trustServerCertificate: true
+    useUTC: false,
+    dateFormat: 'mdy',
+    trustServerCertificate: process.env.DB_TRUST_CERT === 'true' || true
   },
   pool: {
-    max: 10,
-    min: 0,
-    idleTimeoutMillis: 30000
+    max: parseInt(process.env.DB_POOL_MAX) || 10,
+    min: parseInt(process.env.DB_POOL_MIN) || 0,
+    idleTimeoutMillis: parseInt(process.env.DB_IDLE_TIMEOUT) || 30000
   },
-  // ✅ ADD: Connection timeout
-  connectionTimeout: 15000,
-  requestTimeout: 30000
+  connectionTimeout: parseInt(process.env.DB_CONN_TIMEOUT) || 15000,
+  requestTimeout: parseInt(process.env.DB_REQ_TIMEOUT) || 30000
 };
 
 const pool = new sql.ConnectionPool(config);
 let poolConnect;
 
-// ✅ FIX: Enhanced connection with error handling
 const connectWithRetry = async () => {
   try {
     poolConnect = await pool.connect();
     console.log('✅ Connected to SQL Server successfully');
     
-    // ✅ ADD: Test timezone settings
     const result = await pool.request().query(`
       SELECT 
         GETDATE() as localTime,
@@ -56,7 +55,6 @@ const connectWithRetry = async () => {
   }
 };
 
-// ✅ ADD: Graceful shutdown
 process.on('SIGINT', async () => {
   console.log('🔄 Closing database connection...');
   await pool.close();
@@ -69,3 +67,4 @@ module.exports = {
   pool,
   connect: connectWithRetry
 };
+
